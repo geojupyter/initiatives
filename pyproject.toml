@@ -10,3 +10,15 @@ dependencies = [
   "pygithub",
   "yarl",
 ]
+
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+]
+
+
+[tool.mypy]
+packages = ["validator"]
+python_version = "3.12"
+strict = true
