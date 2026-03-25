@@ -20,7 +20,7 @@ class HeadingRequirement(TypedDict):
     max_words: NotRequired[int]
 
 
-REQUIRED_HEADINGS: dict[int, HeadingRequirement] = {
+REQUIRED_HEADINGS: dict[int, list[HeadingRequirement]] = {
     1: [  # Header level 1
         {
             "heading": "Problem statement",
