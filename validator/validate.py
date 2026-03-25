@@ -135,6 +135,7 @@ def _parse_segments(markdown: str) -> dict[str, list[Token]]:
 
             if is_l2_header:
                 if current_segment_header is not None:
+                    # TODO: Confusing! Adding content from previous iteration?
                     document_segments[current_segment_header] = current_segment_content
 
                 current_segment_header = _render_tokens_md(
