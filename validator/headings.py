@@ -13,7 +13,7 @@ FREEFORM_HEADINGS = [
 
 
 # TODO: Support multiple levels of headings
-HEADING_REQUIREMENTS: list[HeadingRequirement] = {
+HEADING_REQUIREMENTS: list[HeadingRequirement] = [
     {
         "heading": "Problem statement",
         "min_words": 10,
@@ -46,6 +46,6 @@ HEADING_REQUIREMENTS: list[HeadingRequirement] = {
     {
         "heading": "Endorsements",
     },
-}
+]
 
 ALLOWED_HEADINGS = FREEFORM_HEADINGS + [req["heading"] for req in HEADING_REQUIREMENTS]
