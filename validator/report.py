@@ -26,6 +26,7 @@ class ValidationReport:
         self.issues.append(issue)
         print(issue.rich_message)
 
+    @property
     def is_failure(self) -> bool:
         return len(self.issues) > 0
 
