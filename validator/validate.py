@@ -41,12 +41,12 @@ def _validate_issue(*, github: Github, issue_id: int) -> None:
 
     # Remove obsolete error labels
     for label in current_error_labels - report.error_labels:
-        print(f"ℹ️  Removing label {label} from {issue.html_url}")
+        print(f"ℹ️ Removing label {label} from {issue.html_url}")
         issue.remove_from_labels(label)
 
     # Add new error labels
     for label in report.error_labels - current_error_labels:
-        print(f"ℹ️  Adding label {label} to {issue.html_url}")
+        print(f"ℹ️ Adding label {label} to {issue.html_url}")
         issue.add_to_labels(label)
 
     # TODO: Post a comment in the issue
