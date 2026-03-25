@@ -192,25 +192,28 @@ def _validate_issue(*, github: Github, issue_id: int) -> None:
         print("⚠️  Issue is closed -- skipping")
         return
 
-    error_label = _validate(issue.body)
+    new_error_label = _validate(issue.body)
 
-    error_labels = [
+    current_error_labels = [
         label.name for label in issue.labels if label.name.startswith("error:")
     ]
 
-    if error_label is None:
-        # Remove all error labels
-        for label in error_labels:
+    if new_error_label is None:
+        # Remove all "error:" labels
+        for label in current_error_labels:
             print(f"ℹ️  Removing label {label} from {issue.html_url}")
             issue.remove_from_labels(label)
-    else:
-        # Remove all *other* error: labels
-        for label in error_labels:
-            if label != error_label:
-                print(f"ℹ️  Removing label {label} from {issue.html_url}")
-                issue.remove_from_labels(label)
-        issue.add_to_labels(error_label)
-        print(f"ℹ️  Adding label {label} to {issue.html_url}")
+
+        return None
+
+    # Remove all *other* "error:" labels
+    for label in current_error_labels:
+        if label != new_error_label:
+            print(f"ℹ️  Removing label {label} from {issue.html_url}")
+            issue.remove_from_labels(label)
+
+    issue.add_to_labels(new_error_label)
+    print(f"ℹ️  Adding label {new_error_label} to {issue.html_url}")
 
 
 def cli() -> None:
