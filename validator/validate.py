@@ -44,6 +44,7 @@ def _validate_issue(
 
     print()
     print(report)
+    print()
 
     current_error_labels = {
         label.name for label in issue.labels if label.name.startswith(LABEL_PREFIX)
