@@ -97,11 +97,19 @@ def _validate_segment(*, heading: str, level: int, content: str) -> None | str:
     return None
 
 
-def _render_tokens_md(*, renderer: MarkdownRenderer, tokens: Iterable[Token]) -> str:
+def _render_tokens_md(
+    *,
+    renderer: MarkdownRenderer,
+    tokens: Iterable[Token] | None,
+) -> str:
     """Render tokens passed in as markdown.
 
     Convenience function to convert AST to markdown.
     """
+    if not tokens:
+        # TODO: Guarantee tokens will be passed in?
+        return ""
+
     return "".join([renderer.render(c) for c in tokens])
 
 
