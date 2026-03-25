@@ -38,7 +38,7 @@ class ValidationReport:
         if self.is_failure:
             lines.append(f"❌ Validation failed with {len(self.issues)} issues.")
             lines.append("")
-            lines + [f"- {issue.rich_message}" for issue in self.issues]
+            lines.extend([f"- {issue.rich_message}" for issue in self.issues])
         else:
             lines.append("✔️  Validation successful!")
 
