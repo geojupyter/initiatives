@@ -129,7 +129,7 @@ def _parse_segments(markdown: str) -> dict[str, list[Token]]:
         document_segments = {}
 
         current_segment_header = None
-        current_segment_content = []
+        current_segment_content: list[Heading | Token] = []
         for c in doc.children:
             if isinstance(c, Heading) and c.level == 3:
                 if current_segment_header is not None:
