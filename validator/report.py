@@ -53,7 +53,7 @@ class ValidationReport:
         timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
         lines: list[str] = []
 
-        lines.append(f"{timestamp} - {self._summary_message}")
+        lines.append(f"**{self._summary_message}** ({timestamp})")
         if self.is_failure:
             lines.append("<details>")
             lines.append("<summary>Errors</summary>")
