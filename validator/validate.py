@@ -2,7 +2,6 @@
 
 from argparse import ArgumentParser
 import os
-import sys
 import nltk
 from typing import Iterable
 from mistletoe import Document
@@ -11,7 +10,6 @@ from mistletoe.block_token import Heading
 from mistletoe.token import Token
 from github import Github, Auth
 from typing import NotRequired, TypedDict
-from yarl import URL
 
 REPO_OWNER = "geojupyter"
 REPO_NAME = "initiatives"
@@ -173,28 +171,29 @@ def _validate_issue(*, github: Github, issue_id: int) -> None:
     issue = github.get_repo(f"{REPO_OWNER}/{REPO_NAME}").get_issue(issue_id)
 
     # Only act on open issues
-    if issue.state != 'open':
+    if issue.state != "open":
         print("⚠️  Issue is closed -- skipping")
         return
 
     error_label = _validate(issue.body)
 
-    error_labels = [l.name for l in issue.labels if l.name.startswith("error:")]
+    error_labels = [
+        label.name for label in issue.labels if label.name.startswith("error:")
+    ]
 
     if error_label is None:
         # Remove all error labels
-        for l in error_labels:
-            print(f"ℹ️  Removing label {l} from {issue.html_url}")
-            issue.remove_from_labels(l)
+        for label in error_labels:
+            print(f"ℹ️  Removing label {label} from {issue.html_url}")
+            issue.remove_from_labels(label)
     else:
         # Remove all *other* error: labels
-        for l in error_labels:
-            if l != error_label:
-                print(f"ℹ️  Removing label {l} from {issue.html_url}")
-                issue.remove_from_labels(l)
+        for label in error_labels:
+            if label != error_label:
+                print(f"ℹ️  Removing label {label} from {issue.html_url}")
+                issue.remove_from_labels(label)
         issue.add_to_labels(error_label)
-        print(f"ℹ️  Adding label {l} to {issue.html_url}")
-
+        print(f"ℹ️  Adding label {label} to {issue.html_url}")
 
 
 def cli():
