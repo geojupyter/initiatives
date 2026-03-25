@@ -7,6 +7,7 @@ from argparse import ArgumentParser
 from github import Auth, Github
 
 from validator.checks import (
+    DisorderedHeadingCheck,
     MissingHeadingsCheck,
     UnexpectedHeadingsCheck,
     Validator,
@@ -39,6 +40,7 @@ def _validate_issue(
         checks=[
             MissingHeadingsCheck(),
             UnexpectedHeadingsCheck(),
+            DisorderedHeadingCheck(),
             WordCountCheck(),
         ]
     )

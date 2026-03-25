@@ -65,7 +65,7 @@ class UnexpectedHeadingsCheck(ValidationCheck):
             )
 
 
-class DisorderedHeaderCheck(ValidationCheck):
+class DisorderedHeadingCheck(ValidationCheck):
     """Validate that headings appear in the expected order."""
 
     def check(self, segments: SegmentsMap, report: ValidationReport) -> None:
