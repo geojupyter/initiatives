@@ -24,7 +24,6 @@ class ValidationReport:
 
     def add_issue(self, issue: ValidationIssue) -> None:
         self.issues.append(issue)
-        print(issue.rich_message)
 
     @property
     def is_failure(self) -> bool:
