@@ -27,6 +27,7 @@ This validator is inspired by / reused from the <https://github.com/2i2c-org/ini
     * Add emoji icons to messages
     * Post validation report to issue as one comment that gets updated with each run
     * Use a single label for validation failure instead of issue-specific labels
+    * Only act on issues labeled as initiatives
 * Minutia
     * Add typing information
     * Comment adjustments

@@ -12,7 +12,7 @@ from validator.checks import (
     Validator,
     WordCountCheck,
 )
-from validator.constants import LABEL, REPO_NAME, REPO_OWNER
+from validator.constants import LABEL_ERROR, LABEL_INITIATIVE, REPO_NAME, REPO_OWNER
 from validator.github import _post_or_update_github_comment
 from validator.report import ValidationReport
 
@@ -24,12 +24,14 @@ def _validate_issue(
     post_comment: bool = False,
 ) -> ValidationReport:
     issue = github.get_repo(f"{REPO_OWNER}/{REPO_NAME}").get_issue(issue_id)
+    issue_labels = [label.name for label in issue.labels]
 
-    # Only act on open issues
     if issue.state != "open":
         print("⚠️  Issue is closed -- skipping")
+        return ValidationReport()
 
-        # Should this be considered a failure? ¯\_(ツ)_/¯
+    if LABEL_INITIATIVE not in issue.labels:
+        print(f"⚠️  Issue missing label '{LABEL_INITIATIVE}' -- skipping")
         return ValidationReport()
 
     validator = Validator(
@@ -46,15 +48,15 @@ def _validate_issue(
     print(report)
     print()
 
-    has_error_label = any(label.name == LABEL for label in issue.labels)
+    has_error_label = LABEL_ERROR in issue_labels
 
     if report.is_failure and not has_error_label:
-        issue.add_to_labels(LABEL)
-        print(f"ℹ️ Added label {LABEL} to {issue.html_url}")
+        issue.add_to_labels(LABEL_ERROR)
+        print(f"ℹ️ Added label '{LABEL_ERROR}' to {issue.html_url}")
 
     if not report.is_failure and has_error_label:
-        issue.remove_from_labels(LABEL)
-        print(f"ℹ️ Removed label {LABEL} from {issue.html_url}")
+        issue.remove_from_labels(LABEL_ERROR)
+        print(f"ℹ️ Removed label '{LABEL_ERROR}' from {issue.html_url}")
 
     if post_comment:
         _post_or_update_github_comment(issue=issue, report=report)
