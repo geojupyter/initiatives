@@ -35,7 +35,7 @@ class MissingHeadingsCheck(ValidationCheck):
     def check(self, segments: SegmentsMap, report: ValidationReport) -> None:
         missing_headings = [
             req["heading"]
-            for req in self.heading_requireemnts
+            for req in self.heading_requirements
             if req["heading"] not in segments.keys()
         ]
 
