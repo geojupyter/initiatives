@@ -14,6 +14,9 @@ def _parse_segments(markdown: str) -> dict[str, list[Token]]:
         A dictionary where the keys are the 2nd level headings and values are the
         contents of those headings.
     """
+    print("ℹ️ Read markdown:")
+    print(markdown)
+
     doc = Document(markdown)
     if not doc.children:
         return {}
@@ -40,7 +43,7 @@ def _parse_segments(markdown: str) -> dict[str, list[Token]]:
         # TODO: Can we refactor to remove this typeguard
         document_segments[current_segment_header] = current_segment_content
 
-    print("ℹ️  Parsed segments:")
+    print("ℹ️ Parsed h2 segments:")
     pprint(document_segments)
     return document_segments
 
