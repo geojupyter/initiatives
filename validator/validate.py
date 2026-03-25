@@ -147,7 +147,9 @@ def _parse_segments(markdown: str) -> dict[str, list[Token]]:
                 current_segment_content.append(child)
 
         # Add the last segment
-        document_segments[current_segment_header] = current_segment_content
+        if current_segment_header is not None:
+            # TODO: Can we refactor to remove this typeguard
+            document_segments[current_segment_header] = current_segment_content
 
         return document_segments
 
