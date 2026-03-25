@@ -130,17 +130,18 @@ def _parse_segments(markdown: str) -> dict[str, list[Token]]:
 
         current_segment_header = None
         current_segment_content: list[Heading | Token] = []
-        for c in doc.children:
-            if isinstance(c, Heading) and c.level == 3:
+        for child in doc.children:
+            if isinstance(child, Heading) and child.level == 3:
                 if current_segment_header is not None:
                     document_segments[current_segment_header] = current_segment_content
+
                 current_segment_header = _render_tokens_md(
                     renderer=renderer,
-                    tokens=c.children,
+                    tokens=child.children,
                 ).strip()
                 current_segment_content = []
             else:
-                current_segment_content.append(c)
+                current_segment_content.append(child)
 
         # Add the last segment
         document_segments[current_segment_header] = current_segment_content
