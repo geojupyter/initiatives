@@ -26,7 +26,7 @@ This validator is inspired by / reused from the <https://github.com/2i2c-org/ini
 * Features
     * Print message when skipping closed issues
     * Add emoji icons to messages
-    * Post validation report to issue
+    * Post validation report to issue as one comment that gets updated with each run
 * Minutia
     * Add typing information
     * Comment adjustments
