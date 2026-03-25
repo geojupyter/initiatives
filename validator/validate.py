@@ -16,7 +16,12 @@ from validator.constants import LABEL_PREFIX, REPO_NAME, REPO_OWNER
 from validator.report import ValidationReport
 
 
-def _validate_issue(*, github: Github, issue_id: int) -> ValidationReport:
+def _validate_issue(
+    *,
+    github: Github,
+    issue_id: int,
+    post_comment: bool = False,
+) -> ValidationReport:
     issue = github.get_repo(f"{REPO_OWNER}/{REPO_NAME}").get_issue(issue_id)
 
     # Only act on open issues
@@ -53,7 +58,8 @@ def _validate_issue(*, github: Github, issue_id: int) -> ValidationReport:
         print(f"ℹ️ Adding label {label} to {issue.html_url}")
         issue.add_to_labels(label)
 
-    # TODO: Post a comment in the issue
+    if post_comment and report.is_failure:
+        issue.create_comment(str(report))
 
     return report
 
@@ -64,6 +70,11 @@ def cli() -> None:
         "issue",
         help=f"Issue to validate (issue id on {REPO_OWNER}/{REPO_NAME})",
     )
+    argparser.add_argument(
+        "--post-report-as-comment",
+        action="store_true",
+        help="On validation failure, post validation report as a comment in the issue.",
+    )
     args = argparser.parse_args()
 
     if not args.issue.isdigit():
@@ -71,7 +82,11 @@ def cli() -> None:
 
     github = Github(auth=Auth.Token(os.environ["GITHUB_TOKEN"]))
 
-    report = _validate_issue(github=github, issue_id=int(args.issue))
+    report = _validate_issue(
+        github=github,
+        issue_id=int(args.issue),
+        post_comment=args.post_report_as_comment,
+    )
 
     if report.is_failure:
         sys.exit(1)
