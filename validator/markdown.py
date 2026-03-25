@@ -1,4 +1,3 @@
-from pprint import pprint
 from typing import Iterable
 
 from mistletoe.block_token import Document, Heading
@@ -7,16 +6,13 @@ from mistletoe.token import Token
 
 
 def _parse_segments(markdown: str) -> dict[str, list[Token]]:
-    """Parse given markdown into 'segments' separated by 2nd level headings.
+    """Parse given markdown into 'segments' separated by 3rd level headings.
 
     Returns:
 
-        A dictionary where the keys are the 2nd level headings and values are the
+        A dictionary where the keys are the 3rd level headings and values are the
         contents of those headings.
     """
-    print("ℹ️ Read markdown:")
-    print(markdown)
-
     doc = Document(markdown)
     if not doc.children:
         return {}
@@ -43,8 +39,7 @@ def _parse_segments(markdown: str) -> dict[str, list[Token]]:
         # TODO: Can we refactor to remove this typeguard
         document_segments[current_segment_header] = current_segment_content
 
-    print("ℹ️ Parsed h2 segments:")
-    pprint(document_segments)
+    print(f"ℹ️ Parsed h3 segments: {document_segments.keys()}")
     return document_segments
 
 
