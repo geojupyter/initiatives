@@ -12,7 +12,7 @@ from validator.checks import (
     Validator,
     WordCountCheck,
 )
-from validator.constants import LABEL_PREFIX, REPO_NAME, REPO_OWNER
+from validator.constants import LABEL, REPO_NAME, REPO_OWNER
 from validator.github import _post_or_update_github_comment
 from validator.report import ValidationReport
 
@@ -46,19 +46,15 @@ def _validate_issue(
     print(report)
     print()
 
-    current_error_labels = {
-        label.name for label in issue.labels if label.name.startswith(LABEL_PREFIX)
-    }
+    has_error_label = any(label.name == LABEL for label in issue.labels)
 
-    # Remove obsolete error labels
-    for label in current_error_labels - report.error_labels:
-        issue.remove_from_labels(label)
-        print(f"ℹ️ Removed label {label} from {issue.html_url}")
+    if report.is_failure and not has_error_label:
+        issue.add_to_labels(LABEL)
+        print(f"ℹ️ Added label {LABEL} to {issue.html_url}")
 
-    # Add new error labels
-    for label in report.error_labels - current_error_labels:
-        issue.add_to_labels(label)
-        print(f"ℹ️ Added label {label} to {issue.html_url}")
+    if not report.is_failure and has_error_label:
+        issue.remove_from_labels(LABEL)
+        print(f"ℹ️ Removed label {LABEL} from {issue.html_url}")
 
     if post_comment:
         _post_or_update_github_comment(issue=issue, report=report)

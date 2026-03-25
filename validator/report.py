@@ -1,18 +1,12 @@
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
-from validator.constants import LABEL_PREFIX
-
 
 @dataclass(frozen=True)
 class ValidationIssue:
     code: str
     message: str
     heading: str | None = None
-
-    @property
-    def label(self) -> str:
-        return f"{LABEL_PREFIX}{self.code}"
 
     @property
     def rich_message(self) -> str:
@@ -29,10 +23,6 @@ class ValidationReport:
     @property
     def is_failure(self) -> bool:
         return len(self.issues) > 0
-
-    @property
-    def error_labels(self) -> set[str]:
-        return {issue.label for issue in self.issues}
 
     @property
     def _summary_message(self) -> str:

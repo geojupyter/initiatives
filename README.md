@@ -43,6 +43,4 @@ and the JupyterHub community's roadmapping workshop in early 2026.
 * Support structural validation of headers (i.e. not just the header level but what
   children a header should have)
 * Validate order of headings
-* Document labels and how they should be used
-* Reconsider whether we need labels at all?
 * Explore how we might use a project board
