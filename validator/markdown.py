@@ -39,7 +39,7 @@ def _parse_segments(markdown: str) -> dict[str, list[Token]]:
         # TODO: Can we refactor to remove this typeguard
         document_segments[current_segment_header] = current_segment_content
 
-    print(f"ℹ️ Parsed h3 segments: {document_segments.keys()}")
+    print(f"ℹ️ Parsed h3 segments: {list(document_segments.keys())}")
     return document_segments
 
 
