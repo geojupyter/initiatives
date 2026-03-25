@@ -1,5 +1,7 @@
 name: New Initiative
 description: A new initiative
+labels:
+  - "type: initiative"
 body:
 - type: textarea
   id: problem-statement
