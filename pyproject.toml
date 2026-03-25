@@ -1,0 +1,12 @@
+[project]
+name = "geojupyter-initiatives-validator"
+version = "0.1.0"
+description = "Validate (lint) GeoJupyter initiatives for expected structure"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+  "mistletoe",
+  "nltk",
+  "pygithub",
+  "yarl",
+]

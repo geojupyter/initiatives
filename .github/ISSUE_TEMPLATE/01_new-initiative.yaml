@@ -1,0 +1,62 @@
+name: New Initiative
+description: A new initiative
+body:
+- type: textarea
+  id: problem-statement
+  attributes:
+    label: Problem statement
+    description: |
+      A specific problem being faced by one or more specific personas we care
+      about.
+
+- type: textarea
+  id: who-is-impacted
+  attributes:
+    label: Who is impacted by this problem?
+    description: |
+      Which personas
+      (such as student, researcher, instructor, end user, analyst, PI, etc)
+      are impacted by this problem?
+      Ideally, list a specific person who can stand in for this persona and validate our decisions.
+
+- type: textarea
+  id: proposed-solution
+  attributes:
+    label: Proposed solution
+    description: |
+      How we intend to solve the problem, written in a way that is understandable to the persona(s) facing the problem.
+
+- type: textarea
+  id: proposed-implementation
+  attributes:
+    label: Proposed implementation
+    description: |
+      A very broad description of how we propose to technically implement this solution.
+
+- type: textarea
+  id: fits
+  attributes:
+    label: How will this fit in the ecosystem?
+    description: |
+      How will this proposed solution fit within the upstream ecosystem as well as practices of our current communities?
+
+- type: textarea
+  id: when
+  attributes:
+    label: How do we identify the right time to do this? (Is it now?)
+    description: |
+      A description of the criteria that help us to know when is the right time to work on this problem.
+
+- type: textarea
+  id: who-implements
+  attributes:
+    label: Who is doing / will do the work?
+    description: |
+      Name individuals who will implement this initiative, and their roles in that implementation.
+
+- type: textarea
+  id: endorsements
+  attributes:
+    label: Endorsements
+    description: |
+      List of endorsements from community members who may find this useful
