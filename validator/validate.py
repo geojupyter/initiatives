@@ -1,6 +1,7 @@
 """Validate a GitHub issue aligns with our standards."""
 
 import os
+import sys
 from argparse import ArgumentParser
 
 from github import Auth, Github
@@ -12,15 +13,18 @@ from validator.checks import (
     WordCountCheck,
 )
 from validator.constants import LABEL_PREFIX, REPO_NAME, REPO_OWNER
+from validator.report import ValidationReport
 
 
-def _validate_issue(*, github: Github, issue_id: int) -> None:
+def _validate_issue(*, github: Github, issue_id: int) -> ValidationReport:
     issue = github.get_repo(f"{REPO_OWNER}/{REPO_NAME}").get_issue(issue_id)
 
     # Only act on open issues
     if issue.state != "open":
         print("⚠️  Issue is closed -- skipping")
-        return
+
+        # Should this be considered a failure? ¯\_(ツ)_/¯
+        return ValidationReport()
 
     validator = Validator(
         checks=[
@@ -51,6 +55,8 @@ def _validate_issue(*, github: Github, issue_id: int) -> None:
 
     # TODO: Post a comment in the issue
 
+    return report
+
 
 def cli() -> None:
     argparser = ArgumentParser()
@@ -65,4 +71,7 @@ def cli() -> None:
 
     github = Github(auth=Auth.Token(os.environ["GITHUB_TOKEN"]))
 
-    _validate_issue(github=github, issue_id=int(args.issue))
+    report = _validate_issue(github=github, issue_id=int(args.issue))
+
+    if report.is_failure:
+        sys.exit(1)
