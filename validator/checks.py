@@ -74,10 +74,16 @@ class WordCountCheck(ValidationCheck):
             content = _render_tokens_as_md(tokens).strip()
 
             heading_requirement = next(
-                entry
-                for entry in self.heading_requirements
-                if entry["heading"] == heading
+                (
+                    entry
+                    for entry in self.heading_requirements
+                    if entry["heading"] == heading
+                ),
+                None,
             )
+
+            if heading_requirement is None:
+                continue
 
             words = nltk.word_tokenize(content.lower())
             word_count = len(words)
