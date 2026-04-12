@@ -2,7 +2,11 @@ name: "Validate issue"
 
 on:
   issues:
-    types: ["opened", "reopened", "edited", "labeled"]
+    types:
+      - "opened"
+      - "reopened"
+      - "edited"
+      - "labeled"
 
 concurrency:
   group: "validate-issue-${{ github.event.issue.number }}"
@@ -12,12 +16,11 @@ jobs:
   validate-issue:
     name: "Validate issue"
     runs-on: "ubuntu-latest"
+    if: "contains(github.event.issue.labels.*.name, 'type: initiative')"
     permissions:
       issues: "write"
     steps:
     - uses: "actions/checkout@v6"
-      with:
-        fetch-depth: 0
 
     - name: "Install uv"
       uses: "astral-sh/setup-uv@v7"
@@ -25,15 +28,7 @@ jobs:
         enable-cache: true
 
     - name: "Setup dependencies"
-      run: |
-        uv sync --no-dev
-
-    - name: "Validate issue"
+      run: "uv run --no-dev .github/issue_validator.py"
       env:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      run: |
-        uv run --no-sync \
-          python -m \
-            validator \
-              ${{ github.event.issue.number }} \
-              --post-report-as-comment
+        GITHUB_ISSUE_NUMBER: "${{ github.event.issue.number }}"

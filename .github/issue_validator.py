@@ -1,18 +1,12 @@
-from typing import NotRequired, TypedDict
+from gh_issue_validator import validate
+from gh_issue_validator.checks.headings import (
+    CheckDisorderedHeadings,
+    CheckMissingHeadings,
+    CheckUnexpectedHeadings,
+    CheckWordCount,
+    HeadingRequirement,
+)
 
-
-class HeadingRequirement(TypedDict):
-    heading: str
-    min_words: NotRequired[int]
-    max_words: NotRequired[int]
-
-
-FREEFORM_HEADINGS = [
-    "Other information",
-]
-
-
-# TODO: Support multiple levels of headings
 HEADING_REQUIREMENTS: list[HeadingRequirement] = [
     {
         "heading": "Problem statement",
@@ -47,5 +41,21 @@ HEADING_REQUIREMENTS: list[HeadingRequirement] = [
         "heading": "Endorsements",
     },
 ]
+FREEFORM_HEADINGS = [
+    "Other information",
+]
 
-ALLOWED_HEADINGS = FREEFORM_HEADINGS + [req["heading"] for req in HEADING_REQUIREMENTS]
+validate(
+    checks=[
+        CheckMissingHeadings(requirements=HEADING_REQUIREMENTS),
+        CheckUnexpectedHeadings(
+            requirements=HEADING_REQUIREMENTS,
+            freeform_headings=FREEFORM_HEADINGS,
+        ),
+        CheckDisorderedHeadings(
+            requirements=HEADING_REQUIREMENTS,
+            freeform_headings=FREEFORM_HEADINGS,
+        ),
+        CheckWordCount(requirements=HEADING_REQUIREMENTS),
+    ]
+)
