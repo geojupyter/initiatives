@@ -28,7 +28,7 @@ jobs:
         enable-cache: true
 
     - name: "Setup dependencies"
-      run: "uv run .github/issue_validator.py"
+      run: "uv run --no-dev .github/issue_validator.py"
       env:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         GITHUB_ISSUE_NUMBER: "${{ github.event.issue.number }}"

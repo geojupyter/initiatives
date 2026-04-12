@@ -1,16 +1,9 @@
 [project]
-name = "geojupyter-initiatives-validator"
-version = "0.1.0"
-description = "Validate (lint) GeoJupyter initiatives for expected structure"
-readme = "README.md"
-requires-python = ">=3.14"
+name = "geojupyter-initiatives"
+version = "0.0.0"
 dependencies = [
-  "mistletoe",
-  "nltk",
-  "pygithub",
-  "yarl",
+    "gh-issue-validator",
 ]
-
 
 [dependency-groups]
 dev = [
@@ -19,15 +12,10 @@ dev = [
 
 
 [tool.mypy]
-packages = ["validator"]
+files = [".github/issue_validator.py"]
 python_version = "3.12"
 strict = true
 
-[[tool.mypy.overrides]]
-module = [
-    "nltk",
-]
-ignore_missing_imports = true
 
 [tool.ruff.lint]
 extend-select = [

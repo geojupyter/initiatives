@@ -1,10 +1,3 @@
-# /// script
-# requires-python = ">=3.12"
-# dependencies = [
-#   "gh-issue-validator",
-# ]
-# ///
-
 from gh_issue_validator import validate
 from gh_issue_validator.checks.headings import (
     CheckDisorderedHeadings,
