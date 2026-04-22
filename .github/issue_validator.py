@@ -43,6 +43,7 @@ HEADING_REQUIREMENTS: list[HeadingRequirement] = [
 ]
 FREEFORM_HEADINGS = [
     "Other information",
+    "Open questions",
 ]
 
 validate(
