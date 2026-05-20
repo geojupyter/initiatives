@@ -9,7 +9,7 @@ body:
     label: Problem statement
     description: |
       A specific problem being faced by one or more specific personas we care
-      about. "As a ___, I want to be able to ___".
+      about. "As a ___, I want to be able to ___. As a result, ___".
 
 - type: textarea
   id: who-is-impacted
