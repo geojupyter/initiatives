@@ -25,6 +25,9 @@ body:
       The "As a result..." part of your problem statement is the important part that answers "why?" questions.
       Don't get overindex on the "I want ..." part -- the "what" is less important than the "why".
 
+      "As a result..." should answer the question "Which property of good
+      science does solving this problem advance?"
+
 - type: textarea
   id: who-is-impacted
   attributes:
