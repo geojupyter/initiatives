@@ -47,6 +47,10 @@ body:
       Ideally, list a specific person who can stand in for this persona and
       validate our decisions.
 
+      List primary affected parties (e.g. researchers producing a science output)
+      and secondary affected parties (e.g. decision-makers consuming those
+      outputs).
+
 - type: textarea
   id: proposed-solution
   attributes:
