@@ -12,18 +12,24 @@ body:
       about. "As a ___, I want to be able to ___. As a result, ___".
 
       Your problem statement should _not_ pre-suppose a solution.
-      If you catch yourself saying "I want a tool that..." or "I want a feature that...", you might be on the wrong track.
+      If you catch yourself saying "I want a tool that..." or "I want a feature
+      that...", you might be on the wrong track.
 
       * ❌ Bad: "As a researcher, I want a faster Jupyter kernel"
-      * ✅ Good: "As a researcher, I want my analyses to complete during a working session so I can iterate on hypotheses the same day"
+      * ✅ Good: "As a researcher, I want my analyses to complete during a
+        working session so I can iterate on hypotheses the same day"
 
-      Your problem statement should be precise, avoiding ambiguous terms like "improved", or "better", or "faster".
+      Your problem statement should be precise, avoiding ambiguous terms like
+      "improved", or "better", or "faster".
 
       * ❌ Bad: "As a customer, I want a faster checkout experience"
-      * ✅ Good: "As a customer, I want to complete checkout in under 30 seconds"
+      * ✅ Good: "As a customer, I want to complete checkout in under 30
+        seconds"
 
-      The "As a result..." part of your problem statement is the important part that answers "why?" questions.
-      Don't get overindex on the "I want ..." part -- the "what" is less important than the "why".
+      The "As a result..." part of your problem statement is the important part
+      that answers "why?" questions.
+      Don't get overindex on the "I want ..." part -- the "what" is less
+      important than the "why".
 
       "As a result..." should answer the question "Which property of good
       science does solving this problem advance?"
@@ -33,10 +39,10 @@ body:
   attributes:
     label: Who is impacted by this problem?
     description: |
-      Which personas
-      (such as student, researcher, instructor, end user, analyst, PI, etc)
-      are impacted by this problem?
-      Ideally, list a specific person who can stand in for this persona and validate our decisions.
+      Which personas (such as student, researcher, instructor, end user,
+      analyst, PI, etc.) are impacted by this problem?
+      Ideally, list a specific person who can stand in for this persona and
+      validate our decisions.
 
 - type: textarea
   id: proposed-solution
