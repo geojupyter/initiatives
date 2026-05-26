@@ -11,6 +11,11 @@ body:
       A specific problem being faced by one or more specific personas we care
       about. "As a ___, I want to be able to ___. As a result, ___".
 
+      Your problem statement should _not_ pre-suppose a solution.
+
+      * ❌ Bad: "As a researcher, I want a faster Jupyter kernel"
+      * ✅ Good: "As a researcher, I want my analyses to complete during a working session so I can iterate on hypotheses the same day"
+
 - type: textarea
   id: who-is-impacted
   attributes:
