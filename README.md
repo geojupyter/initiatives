@@ -6,6 +6,13 @@ The reason this repository exists is to enable roadmapping as a living discussio
 static artifact.
 
 
+## Authoring effective initiatives (mindset)
+
+Your job as an initiative author is _not_ to advocate for a specific idea.
+Your job is to instead _characterize an opportunity clearly enough that the community
+can compare it to other opportunities and decide whether (and when) to pursue it_.
+
+
 ## Information management
 
 The roadmap is managed as GitHub issues.
