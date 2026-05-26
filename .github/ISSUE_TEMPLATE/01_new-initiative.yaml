@@ -34,6 +34,9 @@ body:
       "As a result..." should answer the question "Which property of good
       science does solving this problem advance?"
 
+      * ❌ Bad: "...as a result, reproducibility is improved"
+      * ✅ Good: "...as a result, anyone can re-run my published Notebook in 5 years"
+
 - type: textarea
   id: who-is-impacted
   attributes:
