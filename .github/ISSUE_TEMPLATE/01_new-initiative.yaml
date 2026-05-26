@@ -101,4 +101,7 @@ body:
   attributes:
     label: Endorsements
     description: |
-      List of endorsements from community members who may find this useful
+      List of endorsements from community members who may find this useful.
+
+      Each endorsement should come with a one-sentence reason for their endorsement.
+      What will they get out of this?
