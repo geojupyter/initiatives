@@ -16,6 +16,13 @@ Your job is to instead _characterize an opportunity clearly enough that the comm
 can compare it to other opportunities and decide whether (and when) to pursue it_.
 
 
+### Reference material
+
+* https://miro.com/blog/mapping-product-teams-teresa-torres/
+* https://learn.producttalk.org/continuous-interviewing
+*
+
+
 ## Information management
 
 The roadmap is managed as GitHub issues.
