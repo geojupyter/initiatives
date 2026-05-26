@@ -58,12 +58,18 @@ body:
     description: |
       How we intend to solve the problem, written in a way that is understandable to the persona(s) facing the problem.
 
+      This should be a hypothesis, not a committed solution.
+      This should be concrete enough to evaluate, and any assumptions should be flagged.
+
 - type: textarea
   id: proposed-implementation
   attributes:
     label: Proposed implementation
     description: |
-      A very broad description of how we propose to technically implement this solution.
+      A description of how we propose to technically implement this solution.
+
+      This should be a hypothesis, not a committed solution.
+      This should be concrete enough to evaluate, and any assumptions should be flagged.
 
 - type: textarea
   id: fits
