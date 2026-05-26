@@ -11,15 +11,45 @@ body:
       A specific problem being faced by one or more specific personas we care
       about. "As a ___, I want to be able to ___. As a result, ___".
 
+      Your problem statement should _not_ pre-suppose a solution.
+      If you catch yourself saying "I want a tool that..." or "I want a feature
+      that...", you might be on the wrong track.
+
+      * ❌ Bad: "As a researcher, I want a faster Jupyter kernel"
+      * ✅ Good: "As a researcher, I want my analyses to complete during a
+        working session so I can iterate on hypotheses the same day"
+
+      Your problem statement should be precise, avoiding ambiguous terms like
+      "improved", or "better", or "faster".
+
+      * ❌ Bad: "As a customer, I want a faster checkout experience"
+      * ✅ Good: "As a customer, I want to complete checkout in under 30
+        seconds"
+
+      The "As a result..." part of your problem statement is the important part
+      that answers "why?" questions.
+      Don't get overindex on the "I want ..." part -- the "what" is less
+      important than the "why".
+
+      "As a result..." should answer the question "Which property of good
+      science does solving this problem advance?"
+
+      * ❌ Bad: "...as a result, reproducibility is improved"
+      * ✅ Good: "...as a result, anyone can re-run my published Notebook in 5 years"
+
 - type: textarea
   id: who-is-impacted
   attributes:
     label: Who is impacted by this problem?
     description: |
-      Which personas
-      (such as student, researcher, instructor, end user, analyst, PI, etc)
-      are impacted by this problem?
-      Ideally, list a specific person who can stand in for this persona and validate our decisions.
+      Which personas (such as student, researcher, instructor, end user,
+      analyst, PI, etc.) are impacted by this problem?
+      Ideally, list a specific person who can stand in for this persona and
+      validate our decisions.
+
+      List primary affected parties (e.g. researchers producing a science output)
+      and secondary affected parties (e.g. decision-makers consuming those
+      outputs).
 
 - type: textarea
   id: proposed-solution
@@ -28,12 +58,22 @@ body:
     description: |
       How we intend to solve the problem, written in a way that is understandable to the persona(s) facing the problem.
 
+      This should be a hypothesis, not a committed solution.
+      This should be concrete enough to evaluate, and any assumptions should be flagged.
+
+      Optionally, include an "Alternatives considered" subsection.
+
 - type: textarea
   id: proposed-implementation
   attributes:
     label: Proposed implementation
     description: |
-      A very broad description of how we propose to technically implement this solution.
+      A description of how we propose to technically implement this solution.
+
+      This should be a hypothesis, not a committed solution.
+      This should be concrete enough to evaluate, and any assumptions should be flagged.
+
+      Optionally, include an "Alternatives considered" subsection.
 
 - type: textarea
   id: fits
@@ -61,4 +101,7 @@ body:
   attributes:
     label: Endorsements
     description: |
-      List of endorsements from community members who may find this useful
+      List of endorsements from community members who may find this useful.
+
+      Each endorsement should come with a one-sentence reason for their endorsement.
+      What will they get out of this?
