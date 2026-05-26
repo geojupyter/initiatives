@@ -8,6 +8,9 @@ static artifact.
 
 ## Authoring effective initiatives (mindset)
 
+Writing initiatives may require adopting a mindset that doesn't come naturally to you.
+These tips are intended to help you get in to the right mindset.
+
 Your job as an initiative author is _not_ to advocate for a specific idea.
 Your job is to instead _characterize an opportunity clearly enough that the community
 can compare it to other opportunities and decide whether (and when) to pursue it_.
