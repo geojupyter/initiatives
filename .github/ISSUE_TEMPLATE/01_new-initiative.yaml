@@ -61,6 +61,8 @@ body:
       This should be a hypothesis, not a committed solution.
       This should be concrete enough to evaluate, and any assumptions should be flagged.
 
+      Optionally, include an "Alternatives considered" subsection.
+
 - type: textarea
   id: proposed-implementation
   attributes:
@@ -70,6 +72,8 @@ body:
 
       This should be a hypothesis, not a committed solution.
       This should be concrete enough to evaluate, and any assumptions should be flagged.
+
+      Optionally, include an "Alternatives considered" subsection.
 
 - type: textarea
   id: fits
