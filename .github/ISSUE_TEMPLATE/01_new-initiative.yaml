@@ -12,6 +12,7 @@ body:
       about. "As a ___, I want to be able to ___. As a result, ___".
 
       Your problem statement should _not_ pre-suppose a solution.
+      If you catch yourself saying "I want a tool that..." or "I want a feature that...", you might be on the wrong track.
 
       * ❌ Bad: "As a researcher, I want a faster Jupyter kernel"
       * ✅ Good: "As a researcher, I want my analyses to complete during a working session so I can iterate on hypotheses the same day"
