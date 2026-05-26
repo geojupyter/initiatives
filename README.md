@@ -24,7 +24,7 @@ They are written to help you get in to the right mindset!
 
 * https://miro.com/blog/mapping-product-teams-teresa-torres/
 * https://learn.producttalk.org/continuous-interviewing
-*
+* https://www.mountaingoatsoftware.com/blog/why-the-three-part-user-story-template-works-so-well
 
 
 ## Information management

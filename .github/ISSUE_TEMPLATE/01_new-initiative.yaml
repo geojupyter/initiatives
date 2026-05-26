@@ -16,6 +16,14 @@ body:
       * ❌ Bad: "As a researcher, I want a faster Jupyter kernel"
       * ✅ Good: "As a researcher, I want my analyses to complete during a working session so I can iterate on hypotheses the same day"
 
+      Your problem statement should be precise, avoiding ambiguous terms like "improved", or "better", or "faster".
+
+      * ❌ Bad: "As a customer, I want a faster checkout experience"
+      * ✅ Good: "As a customer, I want to complete checkout in under 30 seconds"
+
+      The "As a result..." part of your problem statement is the important part that answers "why?" questions.
+      Don't get overindex on the "I want ..." part -- the "what" is less important than the "why".
+
 - type: textarea
   id: who-is-impacted
   attributes:
