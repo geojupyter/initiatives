@@ -11,12 +11,12 @@ HEADING_REQUIREMENTS: list[HeadingRequirement] = [
     {
         "heading": "Problem statement",
         "min_words": 10,
-        "max_words": 100,
+        "max_words": 150,
     },
     {
         "heading": "Who is impacted by this problem?",
         "min_words": 1,
-        "max_words": 100,
+        "max_words": 150,
     },
     {
         "heading": "Proposed solution",
