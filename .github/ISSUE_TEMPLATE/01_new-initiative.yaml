@@ -9,7 +9,8 @@ body:
     label: Problem statement
     description: |
       A specific problem being faced by one or more specific personas we care
-      about. "As a ___, I want to be able to ___. As a result, ___".
+      about. "As a ___, I want to be able to ___. As a result, ___. At the
+      moment I can't because ___."
 
       Your problem statement should _not_ pre-suppose a solution.
       If you catch yourself saying "I want a tool that..." or "I want a feature
@@ -26,8 +27,8 @@ body:
       * ✅ Good: "As a customer, I want to complete checkout in under 30
         seconds"
 
-      The "As a result..." part of your problem statement is the important part
-      that answers "why?" questions.
+      The "As a result..." and "I can't because..." part of your
+      problem statement is the important part that answers "why?" questions.
       Don't get overindex on the "I want ..." part -- the "what" is less
       important than the "why".
 
@@ -36,6 +37,8 @@ body:
 
       * ❌ Bad: "...as a result, reproducibility is improved"
       * ✅ Good: "...as a result, anyone can re-run my published Notebook in 5 years"
+
+      "I can't because..." describes the actual problem.
 
 - type: textarea
   id: who-is-impacted
