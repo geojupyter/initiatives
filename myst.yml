@@ -1,0 +1,15 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  title: "GeoJupyter Initiatives"
+  github: "https://github.com/geojupyter/initiatives"
+  toc:
+    - file: "index.md"
+    - title: "Initiatives"
+      children:
+        - pattern: "initiatives/[0-9]*-*/index.md"
+site:
+  template: "book-theme"
+  # options:
+  #   favicon: favicon.ico
+  #   logo: site_logo.png
