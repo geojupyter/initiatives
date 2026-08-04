@@ -2,12 +2,12 @@
 name = "geojupyter-initiatives"
 version = "0.0.0"
 dependencies = [
-    "gh-issue-validator",
+  "gh-issue-validator",
 ]
 
 [dependency-groups]
 dev = [
-    "mypy>=1.19.1",
+  "mypy>=1.19.1",
 ]
 
 
