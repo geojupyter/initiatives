@@ -5,9 +5,11 @@ project:
   github: "https://github.com/geojupyter/initiatives"
   toc:
     - file: "index.md"
-    - title: "Initiatives"
+    - title: "💡 Initiatives"
       children:
         - pattern: "initiatives/[0-9]*-*/index.md"
+    - title: "🗂️ Project board"
+      url: "https://github.com/orgs/geojupyter/projects/6"
 site:
   template: "book-theme"
   # options:
