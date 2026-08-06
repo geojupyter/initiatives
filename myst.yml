@@ -12,6 +12,7 @@ project:
       url: "https://github.com/orgs/geojupyter/projects/6"
 site:
   template: "book-theme"
-  # options:
+  options:
+    hide_footer_links: true
   #   favicon: favicon.ico
   #   logo: site_logo.png
