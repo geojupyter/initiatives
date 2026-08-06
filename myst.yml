@@ -13,6 +13,7 @@ project:
 site:
   template: "book-theme"
   options:
+    style: "assets/styles/style.css"
     folders: true
     hide_footer_links: true
   #   favicon: favicon.ico
