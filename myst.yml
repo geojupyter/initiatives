@@ -2,7 +2,7 @@
 version: 1
 project:
   title: "GeoJupyter Initiatives"
-  github: "https://github.com/geojupyter/initiatives"
+  github: &repo-url "https://github.com/geojupyter/initiatives"
   toc:
     - file: "index.md"
     - title: "💡 Initiatives"
@@ -12,6 +12,11 @@ project:
       url: "https://github.com/orgs/geojupyter/projects/6"
 site:
   template: "book-theme"
+  actions:
+    - title: "GeoJupyter home"
+      url: "https://geojupyter.org"
+    - title: "View source"
+      url: *repo-url
   options:
     style: "assets/styles/style.css"
     folders: true
