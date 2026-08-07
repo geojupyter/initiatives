@@ -33,7 +33,7 @@ dev = { features = ["dev"], solve-group = "default" }
 
 [tool.pixi.tasks]
 preview = "myst start"
-render = "myst build --html"
+render = "myst build --strict --html"
 
 [tool.pixi.dependencies]
 mystmd = ">=1.10.1,<2"
