@@ -3,6 +3,8 @@ version: 1
 project:
   title: "GeoJupyter Initiatives"
   github: &repo-url "https://github.com/geojupyter/initiatives"
+  plugins:
+    - "https://raw.githubusercontent.com/mfisher87/mystmd-plugin-github-user-mentions/refs/heads/main/src/index.mjs"
   toc:
     - file: "index.md"
     - title: "💡 Initiatives"
@@ -10,6 +12,7 @@ project:
         - pattern: "initiatives/[0-9]*-*/index.md"
     - title: "🗂️ Project board"
       url: "https://github.com/orgs/geojupyter/projects/6"
+
 site:
   template: "book-theme"
   actions:
