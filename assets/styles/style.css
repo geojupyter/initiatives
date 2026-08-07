@@ -6,3 +6,8 @@ blockquote {
   font-weight: default;
   font-style: normal !important;
 }
+
+/* Workaround for not being able to do this in the plugin itself */
+.dark .github-mention-icon {
+  filter: invert(1);
+}
