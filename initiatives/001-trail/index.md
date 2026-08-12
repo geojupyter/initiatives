@@ -31,37 +31,49 @@ Trail does not coordinate tools or manage pipelines. Its purpose is narrower: pr
 
 The project record captures:
 
-* **Context:** project title, research questions, spatial and temporal scope, and other project-level metadata.
-* **Resources:** each registered dataset's stable UID, source, version, access date, license, citation, format, path, and lineage where known.
-* **Events:** provenance-relevant state transitions and GUI interactions, with timestamps, tool context, linked resources where applicable, and small structured parameters.
+- **Context:** project title, research questions, spatial and temporal scope, and other project-level metadata.
+- **Resources:** each registered dataset's stable UID, source, version, access date, license, citation, format, path, and lineage where known.
+- **Events:** provenance-relevant state transitions and GUI interactions, with timestamps, tool context, linked resources where applicable, and small structured parameters.
 
-For now, resource registration is explicit: a user registers a dataset once when it enters the project. This establishes the set of resources Trail is responsible for following. A Git-like distinction between tracked, untracked, and ignored files can keep this manageable as a project evolves: registered resources are tracked, newly created outputs can be surfaced as candidates for registration, and scratch paths can be excluded through `.trailignore`. A future data-acquisition tool such as JupyterDataConnect could perform registration automatically without changing Trail's identity model.
+For now, resources can enter the Trail registry in two ways:
+
+1. **Bulk registration at project initialization.** When running `trail init`, the user can provide one or more relative paths to data directories. Trail discovers the existing files within those paths, assigns each a project-scoped resource UID, and begins tracking them.
+2. **Explicit registration during the project.** A user can register an individual dataset when it enters the workflow, at which point Trail assigns it a resource UID and begins tracking it.
+
+Together, these mechanisms establish the set of resources Trail is responsible for reconciling.
+
+As the project evolves, Trail follows a Git-like distinction between **tracked, untracked, and ignored** files. Registered resources are tracked.
+Newly created files remain untracked and can be surfaced as candidates for registration rather than silently receiving a resource UID.
+Scratch files and other paths that should not be suggested can be excluded through `.offtrail`.
+A future data-acquisition tool such as JupyterDataConnect could register newly acquired resources automatically without changing Trail's identity model.
 
 ### Example
 
-A practitioner initializes a Trail project, which assigns it a stable project ID, and registers an administrative-boundary dataset, which receives a stable resource UID. They read, filter, and transform it in a notebook. Those explicit computational steps already remain in the notebook, so Trail does not duplicate them.
-
-If a cell overwrites a registered dataset, Trail reconciles that resource after execution and records the durable state change. The IPython execution event determines when Trail checks; Trail does not parse the cell to infer what happened.
-
-The practitioner then opens the resource in JupyterGIS. Pan and zoom, feature inspection, layer changes, and other provenance-relevant GUI interactions can be observed through JupyterGIS's existing model-level signals and added to the same project record without modifying JupyterGIS itself. Trail observes the structured application state exposed by JupyterGIS rather than parsing raw Yjs transactions. Low-level pointer movement and other interaction telemetry are ignored.
-
-Where a JupyterGIS source can be matched unambiguously to a registered Trail resource, the interaction can be linked to that resource UID. Where identity cannot be established, Trail records the interaction without inventing a dependency.
-
-The resulting record connects durable resource states with the implicit interactions that would otherwise be difficult to recover when a workflow crosses tools.
-
-Trail's internal format remains deliberately small, but the record can later be exported to a GeoJupyter-specific [RO-Crate](https://www.researchobject.org/ro-crate/) profile and aligned with [PROV-O](https://www.w3.org/TR/prov-o/) for interoperability with the broader research-data ecosystem.
+>A practitioner initializes a Trail project, which assigns it a stable project ID, and registers an administrative-boundary dataset, which receives a stable resource UID.
+They read, filter, and transform it in a notebook. Those explicit computational steps already remain in the notebook, so Trail does not duplicate them.
+If a cell overwrites a registered dataset, Trail reconciles that resource after execution and records the durable state change.
+The IPython execution event determines when Trail checks; Trail does not parse the cell to infer what happened.\
+The practitioner then opens the resource in JupyterGIS.
+Pan and zoom, feature inspection, layer changes, and other provenance-relevant GUI interactions can be observed through JupyterGIS's existing model-level signals and added to the same project record without modifying JupyterGIS itself.
+Trail observes the structured application state exposed by JupyterGIS rather than parsing raw Yjs transactions.
+> Low-level pointer movement and other interaction telemetry are ignored.\
+> Where a JupyterGIS source can be matched unambiguously to a registered Trail resource, the interaction can be linked to that resource UID.
+> Where identity cannot be established, Trail records the interaction without inventing a dependency.\
+> The resulting record connects durable resource states with the implicit interactions that would otherwise be difficult to recover when a workflow crosses tools.\
+> Trail's internal format remains deliberately small, but the record can later be exported to a GeoJupyter-specific [RO-Crate](https://www.researchobject.org/ro-crate/) profile and aligned with [PROV-O](https://www.w3.org/TR/prov-o/) for interoperability with the broader research-data ecosystem.
 
 ### How Trail records without continuously watching
 
 Trail follows a Git-like model: persistent identity and durable state are the foundation; continuous monitoring is not.
 
-**Projects and resources establish identity.** `trail init` assigns a stable project ID. Each dataset registered with Trail receives a project-scoped resource UID. This resource registry gives Trail a bounded set of things to follow rather than requiring it to scan arbitrary project contents or infer which files matter.
+**Projects and resources establish identity.** `trail init` assigns a stable project ID. Each dataset registered with Trail receives a project-scoped resource UID. This resource registry gives Trail a bounded set of registered resources to reconcile. Unregistered files are handled separately as candidates for registration rather than being silently incorporated into the provenance record.
 
-**Notebook writes are detected through event-triggered reconciliation.** Trail installs as an IPython extension and uses existing lifecycle and execution hooks such as `post_run_cell` as reconciliation triggers. After a user-run cell, Trail compares the filesystem state of registered resources with their last recorded state. If a registered file was overwritten, replaced, or deleted, Trail records the new durable state.
+**Notebook writes are detected through event-triggered reconciliation.** Trail installs as an IPython extension and uses existing lifecycle and execution hooks such as `post_run_cell` as reconciliation triggers. After a user-run cell, Trail compares the filesystem metadata of registered resources with their last recorded state.
+If a registered file was overwritten, replaced, or deleted, Trail records the new durable state.
 
 The execution hook tells Trail **when to check**; it is not itself evidence that the cell caused the change. Trail does not parse the cell, duplicate explicit reads or transformations, or inspect notebook metadata to infer what the code meant.
 
-**Explicit notebook operations are not duplicated.** Reading a dataset, filtering it, or applying a transformation in Python is already represented in notebook source and history. Trail is concerned with the parts of the workflow that are not otherwise preserved: durable resource transitions and implicit interactions across graphical tools.
+**Explicit notebook operations are not duplicated.** Reading a dataset, filtering it, or applying a transformation in Python is already represented in the notebook source. Trail is concerned with the parts of the workflow that are not otherwise preserved: durable resource transitions and implicit interactions across graphical tools.
 
 **GUI interactions are observed through existing application signals.** JupyterGIS maintains interactive state through a Yjs-backed shared model and exposes model-level signals for changes to map options, layers, sources, selections, inspection state, and other application state. A Trail JupyterLab observer can subscribe to those signals from outside JupyterGIS. JupyterGIS does not need to import Trail or add Trail-specific calls.
 
