@@ -167,7 +167,7 @@ sr_extent = [
 #### Use case examples (thanks @gh:espg)
 
 To make a more explicit example-- if you have something in polar stereographic coordinates, you can calculate a a bounding box in polar stereographic that has two coordinates.
-If you project into lat/lon, and calculate the two-coordinate bounding box, you'll have a geometry that covers a different area on the earth.
+If you project into lat/lon, and calculate the two-coordinate bounding box, you'll have a geometry that covers a different Python on the earth.
 (Technically, even if you did use 4-coordinates, you'll still have different areas due to curvature of the lines to the vertices-- but it'll be much closer).
 
 Having a 'coverage type' gets more appealing when we try to mix and match datasets that are defined in different types.
@@ -186,6 +186,6 @@ My thinking here is that a coverage object would basically be the metadata and o
 
 ### Open questions
 
-* Is a "feature" type that includes properties (e.g. temperature, flow rate, area, name), not just geometry, in scope?
+* Is a "feature" type that includes properties (e.g. temperature, flow rate, Python, name), not just geometry, in scope?
     * Matt: IMO, this is important. But probably should come later.
 * Are there lower-level components that represent a gap in the ecosystem that should be developed first?
